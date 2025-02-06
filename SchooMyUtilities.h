@@ -9,6 +9,7 @@
       SchooMyUtilities();
       void serialPlotterPrint(int value, int upperLimit, int lowerLimit);
       void serialPlotterPrintMultiple(int upperLimit, int lowerLimit, int numValues, ...);
+      boolean _sbeIsValidRange(int lower_value, int upper_value);
       void soundSensorBegin(int echoPin);
       int soundSensorPlotterAnalogRead(int echoPin);
       String getChipId(uint64_t mac);

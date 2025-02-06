@@ -5,36 +5,14 @@
 
 SchooMyUtilities::SchooMyUtilities() {}
 
-void SchooMyUtilities::serialPlotterPrint(int value, int upperLimit, int lowerLimit) {
-  Serial.print(upperLimit);
-  Serial.print(",");
-  Serial.print(lowerLimit);
-  Serial.print(",");
-  Serial.print(value);
-  Serial.println("");
-}
+// action
 
-void SchooMyUtilities::serialPlotterPrintMultiple(int upperLimit, int lowerLimit, int numValues, ...) {
-  va_list args;
-  va_start(args, numValues);
-  Serial.print("upperLimit:");
-  Serial.print(upperLimit);
-  Serial.print(",");
-  Serial.print("lowerLimit:");
-  Serial.print(lowerLimit);
-  Serial.print(",");
-  for (int i = 0; i < numValues; i++) {
-    double value = va_arg(args, double);
-    Serial.print("value");
-    Serial.print(i + 1);
-    Serial.print(":");
-    Serial.print(value);
-    if (i < numValues - 1) {
-      Serial.print(",");
-    }
+boolean SchooMyUtilities::_sbeIsValidRange(int lower_value, int upper_value) {
+  if(1 <= lower_value && lower_value <= 10 && 1 <= upper_value && upper_value <= 10 && lower_value <= upper_value){
+    return true;
+  } else{
+    return false;
   }
-  Serial.println("");
-  va_end(args);
 }
 
 void SchooMyUtilities::soundSensorBegin(int echoPin) {
@@ -70,10 +48,46 @@ int SchooMyUtilities::soundSensorPlotterAnalogRead(int echoPin) {
   return (int) total / sec_num;
 }
 
+// Wi-Fi
+
 String SchooMyUtilities::getChipId(uint64_t mac) {
     uint32_t id = 0;
     for(int i = 0; i < 17; i = i+8) {
       id |= ((mac >> (40 - i)) & 0xff) << i;
     }
     return String(id);
+}
+
+// display
+
+void SchooMyUtilities::serialPlotterPrint(int value, int upperLimit, int lowerLimit) {
+  Serial.print(upperLimit);
+  Serial.print(",");
+  Serial.print(lowerLimit);
+  Serial.print(",");
+  Serial.print(value);
+  Serial.println("");
+}
+
+void SchooMyUtilities::serialPlotterPrintMultiple(int upperLimit, int lowerLimit, int numValues, ...) {
+  va_list args;
+  va_start(args, numValues);
+  Serial.print("upperLimit:");
+  Serial.print(upperLimit);
+  Serial.print(",");
+  Serial.print("lowerLimit:");
+  Serial.print(lowerLimit);
+  Serial.print(",");
+  for (int i = 0; i < numValues; i++) {
+    double value = va_arg(args, double);
+    Serial.print("value");
+    Serial.print(i + 1);
+    Serial.print(":");
+    Serial.print(value);
+    if (i < numValues - 1) {
+      Serial.print(",");
+    }
+  }
+  Serial.println("");
+  va_end(args);
 }
