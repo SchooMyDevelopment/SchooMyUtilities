@@ -3,12 +3,17 @@
 #ifndef SchooMyUtilities_h
   #define SchooMyUtilities_h
   #include "Arduino.h"
+  #include "Grove_LED_Bar.h"
 
   class SchooMyUtilities {
     public:
       SchooMyUtilities();
       void serialPlotterPrint(int value, int upperLimit, int lowerLimit);
       void serialPlotterPrintMultiple(int upperLimit, int lowerLimit, int numValues, ...);
+      void _sbeSetLedBarAll(int led_status, Grove_LED_Bar &bar);
+      void _sbeSetLedBarOdd(int led_status, Grove_LED_Bar &bar);
+      void _sbeSetLedBarEven(int led_status, Grove_LED_Bar &bar);
+      void _sbeSetLedBarRandom(int led_status, Grove_LED_Bar &bar);
       void soundSensorBegin(int echoPin);
       int soundSensorPlotterAnalogRead(int echoPin);
       String getChipId(uint64_t mac);
