@@ -10,6 +10,7 @@
       SchooMyUtilities();
       void serialPlotterPrint(int value, int upperLimit, int lowerLimit);
       void serialPlotterPrintMultiple(int upperLimit, int lowerLimit, int numValues, ...);
+      boolean _sbeIsValidRange(int lower_value, int upper_value);
       void _sbeSetLedBarAll(int led_status, Grove_LED_Bar &bar);
       void _sbeSetLedBarOdd(int led_status, Grove_LED_Bar &bar);
       void _sbeSetLedBarEven(int led_status, Grove_LED_Bar &bar);
