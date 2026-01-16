@@ -13,6 +13,7 @@ boolean SchooMyUtilities::_sbeIsValidRange(int lower_value, int upper_value) {
   } else{
     return false;
   }
+}
 
 void SchooMyUtilities::_sbeSetLedBarAll(int led_status, Grove_LED_Bar &bar){
   for(int i = 1; i <= 10; i++){
