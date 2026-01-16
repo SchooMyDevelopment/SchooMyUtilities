@@ -1,18 +1,40 @@
 /* Copyright (c) 2020 SchooMy, inc.  All rights reserved. */
 
 #include "SchooMyUtilities.h"
+#include "Grove_LED_Bar.h"
 #define sec_num 15
 
 SchooMyUtilities::SchooMyUtilities() {}
 
 // action
-
 boolean SchooMyUtilities::_sbeIsValidRange(int lower_value, int upper_value) {
   if(1 <= lower_value && lower_value <= 10 && 1 <= upper_value && upper_value <= 10 && lower_value <= upper_value){
     return true;
   } else{
     return false;
   }
+
+void SchooMyUtilities::_sbeSetLedBarAll(int led_status, Grove_LED_Bar &bar){
+  for(int i = 1; i <= 10; i++){
+    bar.setLed(i, led_status);
+  }
+}
+
+void SchooMyUtilities::_sbeSetLedBarOdd(int led_status, Grove_LED_Bar &bar){
+  for(int i = 1; i <= 10; i += 2){
+    bar.setLed(i, led_status);
+  }
+}
+
+void SchooMyUtilities::_sbeSetLedBarEven(int led_status, Grove_LED_Bar &bar){
+  for(int i = 2; i <= 10; i += 2){
+    bar.setLed(i, led_status);
+  }
+}
+
+void SchooMyUtilities::_sbeSetLedBarRandom(int led_status, Grove_LED_Bar &bar){
+  int random_num = rand() % 10 + 1;
+  bar.setLed(random_num, led_status);
 }
 
 void SchooMyUtilities::soundSensorBegin(int echoPin) {
